@@ -1,0 +1,1 @@
+gmcs -debug -out:CalculatorAddin.dll -target:library -pkg:tomboy-addins -r:Mono.Posix,MathLib.dll CalculatorAddin.cs CalculatorPreferences.cs CalculatorPreferencesFactory.cs -resource:Calculator.addin.xml

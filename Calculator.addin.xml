@@ -1,0 +1,26 @@
+<Addin id="CalculatorAddin"
+    namespace="Tomboy"
+    name="Calculator"
+    author="Robert Nordan, www.robpvn.net"
+    description="Calculates the answer to any selected piece of text containing an equation and inserts it right after the selected text. Can be used in automatic or manual mode."
+    category="Tools"
+    defaultEnabled="true"
+    version="0.35">
+
+    <Runtime>
+        <Import assembly="CalculatorAddin.dll" />
+    </Runtime>
+
+    <Dependencies>
+        <Addin id="Tomboy" version="0.10" />
+    </Dependencies>
+
+    <Extension path="/Tomboy/NoteAddins">
+        <NoteAddin type="Tomboy.Calculator.CalculatorAddin" />
+    </Extension>
+    
+    <Extension path="/Tomboy/AddinPreferences">
+		<AddinPreferenceFactory type="Tomboy.Calculator.CalculatorPreferencesFactory" />
+	</Extension>
+    
+</Addin>
