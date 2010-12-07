@@ -2,4 +2,4 @@ To compile the addin use: make
 
 (The make command is equivalent to: gmcs -debug -out:CalculatorAddin.dll -target:library -pkg:tomboy-addins -r:Mono.Posix,MathLib.dll CalculatorAddin.cs CalculatorPreferences.cs CalculatorPreferencesFactory.cs -resource:Calculator.addin.xml)
 
-To compile the addin and save it straight to the addin directory (valid for Ubuntu 9.10), use: sudo make copytodir
+To compile the addin and save it straight to the addin directory (valid for Ubuntu 9.10), use: sudo make install

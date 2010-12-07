@@ -2,7 +2,7 @@ Calculator Addin for Tomboy Notes - http://www.robpvn.net/calcaddin
 
 1) Installing
 
-In order to install the add-inn, simply place CalculatorAddin.dll and MathLib.dll in your Tomboy plugins folder.
+In order to install the add-in, simply place CalculatorAddin.dll and MathLib.dll in your Tomboy plugins folder.
 (CalculatorAddin.dll is the actual add-in, MathLib.dll is the Math.NET redistributable library it depends on for
 mathematical operations.) Then go to Preferences -> Add-ins and enable the add-in named Calculator.
 
