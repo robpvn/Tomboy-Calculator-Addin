@@ -29,7 +29,9 @@ namespace Tomboy.Calculator
 {
 	public class CalculatorAddin : NoteAddin
 	{
-		public const string CALCULATOR_AUTOMATIC_MODE = "/apps/tomboy/calcaddin/footer";
+		public const string CALCULATOR_AUTOMATIC_MODE = "/apps/tomboy/calcaddin/footer"; 
+		//The footer name is prob. from some ridiculous copy-paste, must be preserved for backwards compat.
+		public const string CALCULATOR_DECIMAL_COUNT = "/apps/tomboy/calcaddin/decimalcount";
 		
 		Gtk.ImageMenuItem item;
 		NoteBuffer buffer;
@@ -330,9 +332,16 @@ namespace Tomboy.Calculator
 			//Switching back to the systems current culture so we don't mess up Tomboy
 			System.Threading.Thread.CurrentThread.CurrentCulture = cultureBackup;
 			
-			// Three decimals is a nice size for rough calculations, again you don't use Tomboy for heavy stuff. 
-			// TODO: Could possibly add a choice in the preferences if wanted by popular demand.
-			double round_ans = System.Math.Round (ans, 3);
+			//Gets the decimal count. TODO: Should be moved into setup for grester efficency. (Wait for a rewrite)
+			int decimal_count;
+			try {
+				decimal_count = (int) Preferences.Get (CalculatorAddin.CALCULATOR_DECIMAL_COUNT);
+			} catch (Exception) {
+				Logger.Debug("CalcAddin: Couldn't find a preference for decimal count.");
+				decimal_count = 3;				//Defaults to 3 if no preference is set.
+			}
+			
+			double round_ans = System.Math.Round (ans, decimal_count);
 			string toInsert = " = " + round_ans.ToString(cultureBackup) + money_sign + " ";
 			
 				Logger.Debug ("CalcAddin: Comma is: " + comma);

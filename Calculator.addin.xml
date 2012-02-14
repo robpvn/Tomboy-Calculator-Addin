@@ -5,7 +5,7 @@
     description="Calculates the answer to any selected piece of text containing an equation and inserts it right after the selected text. Can be used in automatic or manual mode."
     category="Tools"
     defaultEnabled="true"
-    version="0.35">
+    version="0.40">
 
     <Runtime>
         <Import assembly="CalculatorAddin.dll" />

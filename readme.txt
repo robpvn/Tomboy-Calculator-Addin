@@ -37,7 +37,7 @@ common currency signs anywhere in the equation, it can recognize this and assume
 
 3) Changelog
 
-
+Version 0.40: Added preference dialog to select how many decimals the answer should be rounded to. (Minimum 1, maximum 12)
 Version 0.35: Added culture handling to eliminate the bug relating to commas or punctuation marks as decimal signs.
 	      Both will now be used correctly regardless of runtime and regional settings.
 Version 0.30: Implemented automatic identification and solving of equations, with preferences for turning on or off.

@@ -25,11 +25,11 @@ namespace Tomboy.Calculator
 		public CalculatorPreferences()
 		{
 			// TextLabel
-			Gtk.Label label = new Gtk.Label (Catalog.GetString (
+			Gtk.Label method_label = new Gtk.Label (Catalog.GetString (
 				"Choose calculation method:"));
-			label.Wrap = true;
-			label.Xalign = 0;
-			PackStart (label);
+			method_label.Wrap = true;
+			method_label.Xalign = 0;
+			PackStart (method_label);
 
 			// Radio buttons
 			auto_radio = new Gtk.RadioButton (Catalog.GetString (
@@ -49,6 +49,33 @@ namespace Tomboy.Calculator
 			}
 			
 			auto_radio.Toggled += OnSelectedRadioToggled;
+						
+			//Decimal settings
+			
+			
+			Gtk.Label decimal_label = new Gtk.Label (Catalog.GetString (
+				"Choose number of decimals:"));
+			decimal_label.Wrap = true;
+			decimal_label.Xalign = 0;
+			PackStart (decimal_label);
+			
+			Gtk.SpinButton decimal_spinner = new Gtk.SpinButton (1, 12, 1);
+			
+			int decimal_count;
+			try {
+				decimal_count = (int) Preferences.Get (CalculatorAddin.CALCULATOR_DECIMAL_COUNT);
+			} catch (Exception) {
+				Logger.Debug("CalcAddin: Couldn't find a preference for decimal count.");
+				decimal_count = 3;				//Defaults to 3 if no preference is set.
+			}
+			
+			
+			decimal_spinner.Value = decimal_count <= 12 ? decimal_count : 3;
+			
+			PackStart (decimal_spinner);
+			decimal_spinner.Show();
+			
+			decimal_spinner.ValueChanged += OnDecimalValueChanged;
 		}
 		
 		//Sets the preference once the button is toggled
@@ -64,6 +91,14 @@ namespace Tomboy.Calculator
 					false);
 				Logger.Debug("CalcAddin: turning automatic mode off");
 			}
+		}
+		
+		//Sets the preference once the button is toggled
+		private void OnDecimalValueChanged(object sender, EventArgs args)
+		{
+			Gtk.SpinButton spinner = sender as SpinButton;
+			Preferences.Set (CalculatorAddin.CALCULATOR_DECIMAL_COUNT, spinner.ValueAsInt);
+			Logger.Debug("CalcAddin: Changing decimal count preference");
 		}
 	}
 }
